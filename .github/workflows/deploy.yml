@@ -31,3 +31,4 @@ jobs:
       # Paso 5: Validar y escalar
       - name: Validate and promote
         run: echo "Validando despliegue y escalando al 100% si no hay errores"
+        #lanzamiento
