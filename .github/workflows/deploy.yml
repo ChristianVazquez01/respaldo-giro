@@ -1,0 +1,33 @@
+name: Canary Deployment Workflow
+
+# 🔹 Cuándo se ejecutará el flujo
+on:
+  push:
+    branches:
+      - main     # Cada vez que se suba algo a la rama principal
+
+# 🔹 Qué trabajo hará el flujo
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest   # Usa un entorno Linux virtual
+
+    steps:
+      # Paso 1: Clonar el código del repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Paso 2: Instalar dependencias (ejemplo si usas Node.js)
+      - name: Install dependencies
+        run: npm install
+
+      # Paso 3: Ejecutar pruebas
+      - name: Run tests
+        run: npm test
+
+      # Paso 4: Desplegar versión canario
+      - name: Deploy Canary version
+        run: echo "Desplegando versión 1.1 para el 10% de usuarios..."
+
+      # Paso 5: Validar y escalar
+      - name: Validate and promote
+        run: echo "Validando despliegue y escalando al 100% si no hay errores"
